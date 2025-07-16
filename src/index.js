@@ -3,7 +3,7 @@ const cors = require('cors');
 const axios = require('axios');
 const express = require('express');
 const app = express();
-const port = 4000;
+
 
 app.use(cors());
 app.use(express.json());
@@ -13,8 +13,13 @@ const {
   CLIENT_ID,
   CLIENT_SECRET,
   WORKSPACE_ID,
-  REPORT_ID
+  REPORT_ID,
+  PORT
 } = process.env;
+
+app.get('/', (req, res) => {
+  res.send('Hello World');
+});
 
 app.get('/get-embed-token', async (req, res) => {
   try {
@@ -77,6 +82,6 @@ app.get('/get-embed-token', async (req, res) => {
   }
 });
 
-app.listen(port, () => {
-  console.log(`Servidor escuchando en http://localhost:${port}`);
+app.listen(PORT, () => {
+  console.log(`Servidor escuchando en http://localhost:${PORT}`);
 });
